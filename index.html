@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Week2</title>
+    <meta charset="UTF-8" />
+    <script src="src/index.js" defer></script>
+  </head>
+
+  <body>
+    <main>
+      <h1>Week 2</h1>
+
+      <form id="information-form">
+        <label for="input-username">Username: </label>
+        <input type="text" id="input-username" placeholder="Give username" />
+        <br />
+        <label for="input-email">Email: </label>
+        <input type="text" id="input-email" placeholder="Give email" /> <br />
+        <label for="input-address">Address: </label>
+        <input type="text" id="input-address" placeholder="Give address" />
+        <br />
+        <label for="input-admin">Are you admin? </label>
+        <input
+          type="checkbox"
+          id="input-admin"
+          text="Are you admin?"
+          value="-"
+        />
+        <br />
+        <label for="input-img">Add image for your account:</label>
+        <input type="file" id="input-image" name="input-image" accept="img/*" />
+      </form>
+      <button id="submit-data" input="submit">Submit the information</button>
+      <br />
+      <table id="information-table">
+        <caption>
+          User information
+        </caption>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Admin</th>
+            <th>Profile Picture</th>
+          </tr>
+        </thead>
+        <tbody id="content">
+          <tr id="row1">
+            <td id="username1">Webmaster</td>
+            <td>Webmaster@gmail.com</td>
+            <td>DemolandWebster 123</td>
+            <td>X</td>
+            <td><div></div></td>
+          </tr>
+
+          <tr id="row2">
+            <td id="username2">User</td>
+            <td>user@email.com</td>
+            <td>Userworld23</td>
+            <td>X</td>
+            <td><div></div></td>
+          </tr>
+
+          <tr id="row3">
+            <td id="username3"">User23</td>
+            <td>user_23@outlook.com</td>
+            <td>Street 23</td>
+            <td>-</td>
+            <td><div></div></td>
+          </tr>
+          <tr id="row4">
+            <td id="username4"">User4</td>
+            <td>user_4@outlook.com</td>
+            <td>Street 4</td>
+            <td>-</td>
+          </tr>
+
+          <tr id="row5">
+            <td id="username5"">User5</td>
+            <td>user_5@outlook.com</td>
+            <td>Street 5</td>
+            <td>X</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <button id="empty-table">Empty table</button>
+    </main>
+  </body>
+</html>
