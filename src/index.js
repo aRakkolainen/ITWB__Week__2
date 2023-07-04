@@ -7,13 +7,13 @@ function insertNewRow(givenUsername) {
   let givenEmail = document.getElementById("input-email").value;
   let givenAddress = document.getElementById("input-address").value;
   let newRow = document.createElement("tr");
+  let numberOfRows = document.getElementById("information-table").rows.length-1
   newRow.setAttribute(
     "id",
-    "row" + document.getElementById("information-table").rows.length
+    "row" + numberOfRows
   );
-  let rowCount = document.getElementById("information-table").rows.length;
   let usernameCell = document.createElement("td");
-  usernameCell.setAttribute("id", "username" + rowCount);
+  usernameCell.setAttribute("id", "username" + numberOfRows);
   let emailCell = document.createElement("td");
   let addressCell = document.createElement("td");
   let adminstatusCell = document.createElement("td");
@@ -45,7 +45,7 @@ function insertNewRow(givenUsername) {
   let pic = document.createElement("img");
   pic.style.display = "inline-block";
   pic.src = imgSrc;
-  pic.id = "img" + rowCount;
+  pic.id = "img" + numberOfRows;
   profilePic.appendChild(pic);
   pictureCell.appendChild(profilePic);
   newRow.appendChild(usernameCell);
@@ -60,7 +60,7 @@ function checkUsername(givenUsername) {
   const table = document.getElementById("information-table");
   let rows = table.rows;
   let usernameExistence = false;
-  let rowNumber = 1;
+  let rowNumber = 0;
   for (let i = 1; i < rows.length; i++) {
     if (rows[i].cells[0].innerText === givenUsername) {
       usernameExistence = true;
@@ -68,10 +68,14 @@ function checkUsername(givenUsername) {
       break;
     }
   }
+  //console.log("Username found at row: " + rowNumber)
 
   if (usernameExistence === true) {
+    rowNumber -= 1; 
+    console.log("Username found with rowID: " + rowNumber);
     let rowID = "row" + rowNumber;
     let currentRow = document.getElementById(rowID);
+    console.log(currentRow);
     let givenEmail = document.getElementById("input-email").value;
     let givenAddress = document.getElementById("input-address").value;
     const adminStatusCB = document.getElementById("input-admin");
