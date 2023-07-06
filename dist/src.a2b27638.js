@@ -190,7 +190,7 @@ function insertNewRow(givenUsername) {
   var emailCell = document.createElement("td");
   var addressCell = document.createElement("td");
   var adminstatusCell = document.createElement("td");
-  var pictureCell = document.createElement("td");
+  //let pictureCell = document.createElement("td");
   if (givenUsername !== "") {
     usernameCell.innerText = givenUsername;
   }
@@ -208,22 +208,31 @@ function insertNewRow(givenUsername) {
     adminstatusCell.innerText = "-";
   }
   // This is based on the course material and this tutorial: https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications#example_using_object_urls_to_display_images
-  var imageFile = document.getElementById("input-image").files[0];
-  var imgSrc = "";
-  if (!imageFile) return;
-  imgSrc = URL.createObjectURL(imageFile);
-  var profilePic = document.createElement("div");
-  var pic = document.createElement("img");
-  pic.style.display = "inline-block";
-  pic.src = imgSrc;
-  pic.id = "img" + numberOfRows;
-  profilePic.appendChild(pic);
-  pictureCell.appendChild(profilePic);
+  //Checking if provided image is 64px tall and wide (meaning its size in bytes is 16384 at maximum: https://w3collective.com/restrict-file-size-javascript/)
+  /*const imageInput = document.getElementById("input-image");
+  const imageFile = document.getElementById("input-image").files[0];
+  if (imageInput.files.length > 0) {
+    const fileSize = imageInput.files.item(0).size; 
+    if (fileSize > 16384) {
+      console.log("Your image is too big!")
+    } else {
+      let imgSrc = "";
+    if (!imageFile) return;
+    imgSrc = URL.createObjectURL(imageFile);
+    let profilePic = document.createElement("div");
+    let pic = document.createElement("img");
+    pic.style.display = "inline-block";
+    pic.src = imgSrc;
+    pic.id = "img" + numberOfRows;
+    profilePic.appendChild(pic);
+    pictureCell.appendChild(profilePic);
+    }
+  }*/
   newRow.appendChild(usernameCell);
   newRow.appendChild(emailCell);
   newRow.appendChild(addressCell);
   newRow.appendChild(adminstatusCell);
-  newRow.appendChild(pictureCell);
+  //newRow.appendChild(pictureCell);
   table.appendChild(newRow);
 }
 //Hint for this function was taken from this stackoverflow post: https://stackoverflow.com/questions/60874001/how-to-check-if-a-value-exist-in-a-table-and-return-the-value-of-a-cell-in-that
@@ -264,16 +273,28 @@ function checkUsername(givenUsername) {
     }
 
     // Editing profile image
-    var imgID = "img" + rowNumber;
-    var profilePic = document.getElementById(imgID);
-    var currentImgSrc = profilePic.src;
-    var imageFile = document.getElementById("input-image").files[0];
-    var newImgSrc = "";
-    if (!imageFile) return;
+    /*let imgID = "img" + rowNumber;
+    let profilePic = document.getElementById(imgID);
+    if (profilePic.src != null) {
+      let currentImgSrc = profilePic.src;
+    const imageInput = document.getElementById("input-image");
+    const imageFile = document.getElementById("input-image").files[0];
+    let newImgSrc = "";
+    if (imageInput.files.length > 0 && currentImgSrc != null) {
+      const imageSize = imageInput.files.item(0).size; 
+      if (imageSize > 16384) {
+        console.log("New image is too big!");
+      }
+      else {
+        if (!imageFile) return;
     newImgSrc = URL.createObjectURL(imageFile);
-    if (currentImgSrc !== newImgSrc) {
+      if (currentImgSrc !== newImgSrc) {
       profilePic.src = newImgSrc;
     }
+        }
+    }
+    }
+    */
   } else {
     insertNewRow(givenUsername);
   }
@@ -316,7 +337,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59112" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64097" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
